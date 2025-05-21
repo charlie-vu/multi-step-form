@@ -3,11 +3,26 @@
 @import "bootstrap/scss/functions";
 
 $primary: $blue-950;
-$secondary: $blue-300;
+$secondary: $blue-50;
 $danger: $red-500;
 $muted: $grey-500;
 // $body-bg: $blue-200;
 // $enable-placeholder: true;
+
+$spacer: 1rem;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+
+  6: $spacer * 6,
+  7: $spacer * 7,
+  8: $spacer * 8,
+  9: $spacer * 9,
+);
 
 @import "bootstrap/scss/variables";
 @import "bootstrap/scss/mixins";

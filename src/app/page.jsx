@@ -72,18 +72,18 @@ export default function Index() {
       <div className="home container py-4">
 
         <motion.div {...scale} className="card shadow rounded-4 p-3">
-          <div className="row gx-5">
-            <div className="col-lg-auto d-none d-lg-block" style={{ width: 340 }}>
+          <div className="row gx-0">
+            <div className="col-lg-auto d-none d-lg-block" style={{ width: 290 }}>
               <SidebarDesktop stepList={stepList} active={step} />
             </div>
             <div className="col">
-              <div className="p-5 h-100 d-stack">
+              <div className="h-100 d-stack py-4 pt-5 px-6">
 
                 <AnimatePresence mode="wait">
                   <motion.div key={step} {...fromRight} className="flex-grow-1">
                     <h2 className="fw-bold text-primary">{activeStep?.title || ''}</h2>
                     <p className="mt-3 text-muted opacity-75">{activeStep?.desc}</p>
-                    <StepComponent onValidate={(e) => { setIsValid(e) }} className="mt-4" />
+                    <StepComponent onValidate={(e) => { setIsValid(e) }} className="pt-4" />
                   </motion.div>
                 </AnimatePresence>
 

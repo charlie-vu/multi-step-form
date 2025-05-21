@@ -1,0 +1,20 @@
+.form-control,
+.form-select {
+  padding: 12px 16px;
+  &:focus,
+  &.is-valid:focus,
+  &.is-invalid:focus {
+    box-shadow: none;
+  }
+
+  &::placeholder {
+    opacity: 0.7;
+  }
+}
+
+.form-switch {
+  .form-check-input {
+    box-shadow: none;
+    cursor: pointer;
+  }
+}
