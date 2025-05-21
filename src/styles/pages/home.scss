@@ -1,0 +1,35 @@
+.home {
+    @media (min-width: 992px) {
+        max-width: 960px;
+
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    .sidebar-desktop{
+        background-image: url('/assets/images/bg-sidebar-desktop.svg');
+        background-repeat: no-repeat;
+        background-size: cover;
+
+        min-height: 600px;
+    }
+
+    .step-item{
+        color: white;
+        border: 1px solid $white;
+        &.active{
+            background-color: $blue-200;
+            color: black;
+            border-color: var(--bs-secondary);
+        }
+    }
+
+    .btn-back{
+        color: $muted;
+        &:hover{
+            color: $primary;
+        }
+    }
+
+}

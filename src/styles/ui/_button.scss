@@ -1,0 +1,10 @@
+.btn {
+    font-weight: 600;
+    padding: 8px 24px;
+
+    &-primary{
+        &:hover{
+            opacity: 0.9;
+        }
+    }
+  }
