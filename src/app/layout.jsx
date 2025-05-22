@@ -1,4 +1,5 @@
 import "@/styles/globals.scss";
+import { Suspense } from "react";
 
 export const metadata = {
   title: "Frontend Mentor | Multi-step form",
@@ -12,7 +13,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        {children}
+        <Suspense>
+          {children}
+        </Suspense>
       </body>
     </html>
   );

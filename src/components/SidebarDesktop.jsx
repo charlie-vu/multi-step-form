@@ -1,6 +1,3 @@
-import { useSearchParams } from "next/navigation";
-
-
 export default function SidebarDesktop(props) {
     const {
         stepList = [],
