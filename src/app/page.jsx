@@ -117,7 +117,7 @@ export default function Index() {
                 {
                   step <= 4 &&
                   <div className="mt-3">
-                    <BottomNav step={step} isValid={true} onSubmit={handleSubmit} />
+                    <BottomNav step={step} isValid={isValid} onSubmit={handleSubmit} />
                   </div>
                 }
 

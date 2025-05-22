@@ -1,37 +1,17 @@
 import { displayPrice } from "@/utils/helper";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import data from "@/data";
 
-const optionList = [
-    {
-        value: 'online',
-        text: 'Online service',
-        desc: 'Access to multiplayer games',
-        monthly: 1,
-        yearly: 10,
-    },
-    {
-        value: 'storage',
-        text: 'Larger storage',
-        desc: 'Access to multiplayer games',
-        monthly: 2,
-        yearly: 20,
-    },
-    {
-        value: 'customize',
-        text: 'Customizable profile',
-        desc: 'Access to multiplayer games',
-        monthly: 2,
-        yearly: 20,
-    },
-]
+const optionList = data.addonList;
+
 export default function Step3(props) {
     const {
         className = '',
         savedInfo,
+        onChange,
     } = props;
 
     const [selectedList, setSelectedList] = useState([]);
-    // const isYearly = (sessionStorage && sessionStorage.getItem('info') && JSON.parse(sessionStorage.getItem('info'))?.isYearly) ?? true
 
     const handleSelect = (value) => {
         if (!selectedList.includes(value)) {
@@ -40,6 +20,19 @@ export default function Step3(props) {
             setSelectedList((prev) => prev.filter((item) => item !== value))
         }
     }
+
+    const mounted = useRef(false);
+    useEffect(() => {
+        if (mounted.current) {
+            onChange({ addonList: selectedList });
+        } else {
+            mounted.current = true;
+        }
+    }, [selectedList])
+
+    useEffect(() => {
+        savedInfo && savedInfo.addonList && setSelectedList(savedInfo.addonList)
+    }, [savedInfo])
 
     return (
         <>

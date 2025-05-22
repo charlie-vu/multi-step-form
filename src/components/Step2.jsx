@@ -1,33 +1,9 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { displayPrice } from "@/utils/helper";
+import data from "@/data";
 
-const optionList = [
-    {
-        value: 'arc',
-        title: 'Arcade',
-        monthly: 9,
-        yearly: 90,
-        yearBenefit: '2 months free',
-        icon: 'assets/images/icon-arcade.svg',
-    },
-    {
-        value: 'adv',
-        title: 'Advanced',
-        monthly: 12,
-        yearly: 120,
-        yearBenefit: '2 months free',
-        icon: 'assets/images/icon-advanced.svg',
-    },
-    {
-        value: 'pro',
-        title: 'Pro',
-        monthly: 15,
-        yearly: 150,
-        yearBenefit: '2 months free',
-        icon: 'assets/images/icon-pro.svg',
-    },
-];
+const optionList = data.planList;
 
 export default function Step2(props) {
     const {
@@ -42,8 +18,8 @@ export default function Step2(props) {
 
     useEffect(() => {
         savedInfo?.isYearly !== undefined && setIsYearly(savedInfo.isYearly)
-        savedInfo?.plan !== undefined && setSelected(savedInfo.plan)
-    }, [])
+        savedInfo?.plan && setSelected(savedInfo.plan)
+    }, [savedInfo]) 
 
     const finalValidation = !!selected;
     useEffect(() => {
