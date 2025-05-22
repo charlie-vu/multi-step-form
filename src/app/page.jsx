@@ -1,5 +1,5 @@
 'use client';
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { fromRight, scale } from "@/utils/transition";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -100,7 +100,7 @@ export default function Index() {
   }
 
   return (
-    <>
+    <Suspense>
       <div className="home">
         <div className="container py-lg-4">
           <SidebarMobile stepList={stepList} active={step <= 4 ? step : 4} className="d-lg-none" />
@@ -147,6 +147,6 @@ export default function Index() {
           </div>
         }
       </div>
-    </>
+    </Suspense>
   )
 }
