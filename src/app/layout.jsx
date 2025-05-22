@@ -1,7 +1,7 @@
 import "@/styles/globals.scss";
 
 export const metadata = {
-  title: "Multi-step Form",
+  title: "Frontend Mentor | Multi-step form",
   description: "FE Mentor Challenge",
   icons: {
     icon: "/favicon.png",

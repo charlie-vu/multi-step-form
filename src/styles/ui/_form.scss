@@ -16,5 +16,14 @@
   .form-check-input {
     box-shadow: none;
     cursor: pointer;
+
+    height: 18px;
+    padding-left: 38px;
+    --bs-form-check-bg: var(--bs-primary);
+    --bs-form-switch-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$white}'/></svg>");
+    &:focus{
+      --bs-form-switch-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='#{$white}'/></svg>");
+    }
   }
 }
+
