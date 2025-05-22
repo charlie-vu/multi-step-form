@@ -104,7 +104,7 @@ export default function Index() {
       <div className="container py-lg-4">
         <SidebarMobile stepList={stepList} active={step <= 4 ? step : 4} className="d-lg-none" />
 
-        <motion.div {...scale} className="card shadow rounded-4 p-4 py-5">
+        <motion.div {...scale} className="card shadow rounded-4 p-4 py-5 py-lg-4">
           <div className="row gx-0">
             <div className="col-lg-auto d-none d-lg-block" style={{ width: 290 }}>
               <SidebarDesktop stepList={stepList} active={step <= 4 ? step : 4} />
