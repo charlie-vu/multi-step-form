@@ -53,10 +53,13 @@ export default function Index() {
   const activeStep = stepList.find((item) => item.no === step)
 
   useEffect(() => {
-    if (!step || step > 5 || step < 1) {
-      router.replace('?step=1')
+    const validStep = parseInt(sessionStorage.getItem('valid')) || 0;
+
+    // === Nav guard
+    if (!step || step < 1 || step > 5 || step > validStep + 1) {
+      router.replace(`?step=${Math.min(validStep + 1, 5)}`);
     }
-  }, [step, router])
+  }, [step, router]);
 
 
   let StepComponent;
@@ -84,6 +87,13 @@ export default function Index() {
 
   const handleSubmit = () => {
     sessionStorage.setItem('info', JSON.stringify(info))
+
+    // === Update completed Step
+    const currentValid = parseInt(sessionStorage.getItem('valid')) || 0;
+    if (step > currentValid) {
+      sessionStorage.setItem('valid', step);
+    }
+
     console.log(sessionStorage.getItem('info'))
     router.push(`?step=${step + 1}`)
   }
@@ -120,7 +130,6 @@ export default function Index() {
                     <BottomNav step={step} isValid={isValid} onSubmit={handleSubmit} />
                   </div>
                 }
-
 
               </div>
             </div>

@@ -18,8 +18,8 @@ export default function Step4(props) {
 
     useEffect(() => {
         if (savedInfo) {
-            setSelectedPlan(data.planList.find((item) => item.value === savedInfo.plan))
-            setSelectedAddonList(data.addonList.filter((item) => savedInfo.addonList.includes(item.value)))
+            savedInfo.plan && setSelectedPlan(data.planList.find((item) => item.value === savedInfo.plan))
+            savedInfo.addonList && setSelectedAddonList(data.addonList.filter((item) => savedInfo.addonList.includes(item.value)))
         }
     }, [savedInfo])
 

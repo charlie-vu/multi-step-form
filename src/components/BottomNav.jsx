@@ -14,7 +14,12 @@ export default function BottomNav(props) {
             {step > 1 &&
                 <button className="btn-back btn btn-link text-decoration-none px-0" onClick={() => { router.push(`?step=${step - 1}`) }}>Go Back</button>
             }
-            <button className="btn btn-dark ms-auto" disabled={!isValid} onClick={onSubmit}>Next Step</button>
+            {
+                step === 4 ?
+                    <button className="btn btn-primary ms-auto" onClick={onSubmit}>Confirm</button> :
+                    <button className="btn btn-dark ms-auto" disabled={!isValid} onClick={onSubmit}>Next Step</button>
+
+            }
         </div>
     )
 }
