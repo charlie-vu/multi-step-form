@@ -17,6 +17,12 @@ export default function Index() {
   const step = parseInt(searchParams.get('step'));
   const router = useRouter();
 
+  const [info, setInfo] = useState(null);
+  // Retrieve from Session
+  useEffect(() => {
+    sessionStorage.getItem('info') && setInfo(JSON.parse(sessionStorage.getItem('info')))
+  }, [])
+
   const stepList = [
     {
       no: 1,
@@ -67,6 +73,17 @@ export default function Index() {
       StepComponent = Step1
   }
 
+  const handleChange = (newInfo) => {
+    // console.log(newInfo)
+    setInfo((prev) => ({ ...prev, ...newInfo }))
+  }
+
+  const handleSubmit = () => {
+    sessionStorage.setItem('info', JSON.stringify(info))
+    console.log(sessionStorage.getItem('info'))
+    router.push(`?step=${step + 1}`)
+  }
+
   return (
     <>
       <div className="home container py-4">
@@ -83,12 +100,12 @@ export default function Index() {
                   <motion.div key={step} {...fromRight} className="flex-grow-1">
                     <h2 className="fw-bold">{activeStep?.title || ''}</h2>
                     <p className="mt-3 text-muted">{activeStep?.desc}</p>
-                    <StepComponent onValidate={(e) => { setIsValid(e) }} className="pt-4" />
+                    <StepComponent savedInfo={info} onValidate={(e) => { setIsValid(e) }} onChange={handleChange} className="pt-4" />
                   </motion.div>
                 </AnimatePresence>
 
                 <div className="mt-3">
-                  <BottomNav step={step} isValid={true} />
+                  <BottomNav step={step} isValid={true} onSubmit={handleSubmit} />
                 </div>
 
               </div>

@@ -1,3 +1,4 @@
+import { displayPrice } from "@/utils/helper";
 import { useState } from "react";
 
 const optionList = [
@@ -12,23 +13,25 @@ const optionList = [
         value: 'storage',
         text: 'Larger storage',
         desc: 'Access to multiplayer games',
-        monthly: 1,
-        yearly: 10,
+        monthly: 2,
+        yearly: 20,
     },
     {
         value: 'customize',
         text: 'Customizable profile',
         desc: 'Access to multiplayer games',
-        monthly: 1,
-        yearly: 10,
+        monthly: 2,
+        yearly: 20,
     },
 ]
 export default function Step3(props) {
     const {
         className = '',
+        savedInfo,
     } = props;
 
     const [selectedList, setSelectedList] = useState([]);
+    // const isYearly = (sessionStorage && sessionStorage.getItem('info') && JSON.parse(sessionStorage.getItem('info'))?.isYearly) ?? true
 
     const handleSelect = (value) => {
         if (!selectedList.includes(value)) {
@@ -53,7 +56,7 @@ export default function Step3(props) {
                                         <p className="fw-semibold">{item.text}</p>
                                         <p className="text-muted small">{item.desc}</p>
                                     </div>
-                                    <p className="text-primary">$123/mo</p>
+                                    <p className="text-primary">{displayPrice(item, savedInfo?.isYearly ?? true)}</p>
                                 </div>
 
                             </div>

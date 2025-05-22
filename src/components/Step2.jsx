@@ -32,16 +32,24 @@ const optionList = [
 export default function Step2(props) {
     const {
         className = '',
+        savedInfo,
         onValidate,
+        onChange,
     } = props;
 
     const [selected, setSelected] = useState('');
     const [isYearly, setIsYearly] = useState(true);
 
     useEffect(() => {
-        if (!selected) onValidate(false);
-        if (selected) onValidate(true);
-    }, [selected])
+        savedInfo?.isYearly !== undefined && setIsYearly(savedInfo.isYearly)
+        savedInfo?.plan !== undefined && setSelected(savedInfo.plan)
+    }, [])
+
+    const finalValidation = !!selected;
+    useEffect(() => {
+        onValidate(finalValidation)
+        if (finalValidation) onChange({ plan: selected, isYearly: isYearly })
+    }, [finalValidation, selected, isYearly])
 
     return (
         <>
@@ -57,7 +65,6 @@ export default function Step2(props) {
                                         <p className="text-muted">{displayPrice(item, isYearly)}</p>
                                         {isYearly && <p className="small">{item.yearBenefit}</p>}
                                     </div>
-
                                 </motion.div>
                             </div>
                         )
