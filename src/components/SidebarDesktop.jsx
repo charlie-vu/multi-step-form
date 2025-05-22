@@ -13,7 +13,7 @@ export default function SidebarDesktop(props) {
                 {
                     stepList.length && stepList.map((item, i) =>
                         <div key={`step-${i}`} className="d-flex gap-3 align-items-center">
-                            <div className={`step-item rounded-circle ratio ratio-1x1 ${active === item.no && 'active'}`} style={{ width: 42 }}>
+                            <div className={`step-item rounded-circle ratio ratio-1x1 ${active === item.no ? 'active' : ''}`} style={{ width: 42 }}>
                                 <p className="w-auto h-auto start-50 top-50 translate-middle fw-semibold">{item.no}</p>
                             </div>
                             <div className="text-uppercase text-white">

@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
+import { displayPrice } from "@/utils/helper";
 
 const optionList = [
     {
@@ -31,32 +32,30 @@ const optionList = [
 export default function Step2(props) {
     const {
         className = '',
+        onValidate,
     } = props;
 
     const [selected, setSelected] = useState('');
     const [isYearly, setIsYearly] = useState(true);
 
-    const displayPrice = (item, isYearly) => {
-        if (!item) return "--";
-        if (isYearly) return `$${parseFloat(item.yearly).toLocaleString('en-US')}/yr` || "--";
-        if (!isYearly) return `$${parseFloat(item.monthly).toLocaleString('en-US')}/mo` || "--";
-    }
+    useEffect(() => {
+        if (!selected) onValidate(false);
+        if (selected) onValidate(true);
+    }, [selected])
 
     return (
         <>
-            <div className={`${className}`}>
-
-
+            <div className={`step-2 ${className}`}>
                 <div className={`row row-cols-1 row-cols-lg-3 g-2 g-lg-4`}>
                     {
                         optionList.map((item, i) =>
                             <div key={item.title} className="col">
-                                <motion.div whileTap={{ scale: 0.75 }} transition={{ type: 'spring', duration: 0.1 }} className={`option card rounded-3 p-4 ${selected === item.value && 'active'}`} onClick={() => { setSelected(item.value) }}>
+                                <motion.div whileTap={{ scale: 0.95 }} transition={{ type: 'spring', duration: 0.01 }} className={`option card rounded-3 p-4 ${selected === item.value ? 'active' : ''}`} onClick={() => { setSelected(item.value) }}>
                                     <img src={item.icon} alt={item.value} width={50} height={50} />
-                                    <div className="mt-3 pt-5 text-primary">
+                                    <div className="mt-3 pt-5">
                                         <p className="fw-semibold fs-5">{item.title}</p>
-                                        <p className="text-muted opacity-75">{displayPrice(item, isYearly)}</p>
-                                        {isYearly && <p className="small">2 months free</p>}
+                                        <p className="text-muted">{displayPrice(item, isYearly)}</p>
+                                        {isYearly && <p className="small">{item.yearBenefit}</p>}
                                     </div>
 
                                 </motion.div>
@@ -66,11 +65,11 @@ export default function Step2(props) {
                 </div>
                 <div className="bg-secondary mt-4 p-3 rounded-3">
                     <div className="d-flex gap-4 fw-semibold align-items-center justify-content-center">
-                        <p className={`cursor-pointer ${!isYearly ? 'text-primary' : 'text-muted opacity-75'}`} onClick={() => { setIsYearly(false) }}>Monthly</p>
+                        <p className={`cursor-pointer ${isYearly ? 'text-muted' : ''}`} onClick={() => { setIsYearly(false) }}>Monthly</p>
                         <div className="form-switch">
                             <input className="form-check-input" type="checkbox" role="switch" checked={isYearly} onChange={() => { setIsYearly((prev) => !prev) }}></input>
                         </div>
-                        <p className={`cursor-pointer ${isYearly ? 'text-primary' : 'text-muted opacity-75'}`} onClick={() => { setIsYearly(true) }}>Yearly</p>
+                        <p className={`cursor-pointer ${!isYearly ? 'text-muted' : ''}`} onClick={() => { setIsYearly(true) }}>Yearly</p>
                     </div>
 
                 </div>

@@ -51,3 +51,22 @@ a {
     box-shadow: none;
   }
 }
+
+.text-muted {
+  opacity: 0.75;
+}
+
+.option {
+  cursor: pointer;
+  transition: all 0.1s;
+  &:hover {
+    border-color: $purple-600;
+  }
+  &.active {
+    border-color: $purple-600;
+    background-color: $blue-50;
+  }
+  &:active{
+    transform: translateY(4px);
+  }
+}

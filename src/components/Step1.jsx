@@ -71,7 +71,7 @@ export default function Step1(props) {
 
     return (
         <>
-            <div className={`d-stack gap-3 text-primary ${className}`}>
+            <div className={`step-1 d-stack gap-3 ${className}`}>
                 {
                     Object.entries(info).map(([key, val], i) =>
                         <div key={key}>
@@ -81,19 +81,10 @@ export default function Step1(props) {
                                     <p className="text-danger fw-semibold">{errors[key]}</p>
                                 }
                             </div>
-                            <input type={val.type} className={`form-control mt-1 text-primary fw-semibold ${errors[key] && 'is-invalid'}`} placeholder={val.placeholder} onChange={(e) => { setInfo((prev) => ({ ...prev, [key]: { ...prev[key], value: e.target.value } })) }} />
+                            <input type={val.type} className={`form-control mt-1 fw-semibold ${errors[key] ? 'is-invalid' : ''}`} placeholder={val.placeholder} onChange={(e) => { setInfo((prev) => ({ ...prev, [key]: { ...prev[key], value: e.target.value } })) }} />
                         </div>
                     )
                 }
-
-                {/* <div>
-                        <div className="d-flex gap-2 justify-content-between small">
-                            <p>Name</p>
-                            <p className="text-danger fw-semibold">{errorList.name}</p>
-                        </div>
-                        <input type="text" className="form-control mt-1 text-primary" required />
-                    </div> */}
-
             </div>
         </>
     )

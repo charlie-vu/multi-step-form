@@ -1,10 +1,8 @@
 .btn {
-    font-weight: 600;
-    padding: 8px 24px;
-
-    &-primary{
-        &:hover{
-            opacity: 0.9;
-        }
-    }
+  font-weight: 600;
+  padding: 8px 24px;
+  transition: all 0.1s;
+  &:active{
+    transform: scale(0.95);
   }
+}
