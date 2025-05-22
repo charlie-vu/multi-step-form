@@ -37,14 +37,14 @@ const data = {
         {
             value: 'storage',
             text: 'Larger storage',
-            desc: 'Access to multiplayer games',
+            desc: 'Extra 1TB cloud save',
             monthly: 2,
             yearly: 20,
         },
         {
             value: 'customize',
             text: 'Customizable profile',
-            desc: 'Access to multiplayer games',
+            desc: 'Custom theme on your profile',
             monthly: 2,
             yearly: 20,
         },

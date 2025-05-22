@@ -40,8 +40,8 @@ export default function Step3(props) {
                 <div className="d-stack gap-3">
                     {
                         optionList.map((item, i) =>
-                            <div key={item.value} className={`card p-4 option ${selectedList.includes(item.value) ? 'active' : ''}`} onClick={() => { handleSelect(item.value) }}>
-                                <div className="d-flex gap-4 align-items-center">
+                            <div key={item.value} className={`card p-3 p-lg-4 option ${selectedList.includes(item.value) ? 'active' : ''}`} onClick={() => { handleSelect(item.value) }}>
+                                <div className="d-flex gap-3 align-items-center">
                                     <div className="form-check">
                                         <input className="form-check-input" type="checkbox" value={item.value} checked={selectedList.includes(item.value)} readOnly></input>
                                     </div>

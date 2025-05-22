@@ -11,6 +11,7 @@ import Step3 from "@/components/Step3";
 import Step4 from "@/components/Step4";
 import BottomNav from "@/components/BottomNav";
 import Step5 from "@/components/Step5";
+import SidebarMobile from "@/components/SidebarMobile";
 
 export default function Index() {
   const [isValid, setIsValid] = useState(false);
@@ -100,42 +101,51 @@ export default function Index() {
 
   return (
     <>
-      <div className="home container py-4">
+      <div className="home">
+        <div className="container py-lg-4">
+          <SidebarMobile stepList={stepList} active={step <= 4 ? step : 4} className="d-lg-none" />
 
-        <motion.div {...scale} className="card shadow rounded-4 p-4 py-5 py-lg-4">
-          <div className="row gx-0">
-            <div className="col-lg-auto d-none d-lg-block" style={{ width: 290 }}>
-              <SidebarDesktop stepList={stepList} active={step <= 4 ? step : 4} />
-            </div>
-            <div className="col">
-              <div className="h-100 d-stack py-lg-3 px-lg-5 px-xl-6">
+          <motion.div {...scale} className="card shadow rounded-4 p-4 py-5">
+            <div className="row gx-0">
+              <div className="col-lg-auto d-none d-lg-block" style={{ width: 290 }}>
+                <SidebarDesktop stepList={stepList} active={step <= 4 ? step : 4} />
+              </div>
+              <div className="col">
+                <div className="h-100 d-stack py-lg-3 px-lg-5 px-xl-6">
 
-                <AnimatePresence mode="wait">
-                  <motion.div key={step} {...fromRight} className="flex-grow-1">
-                    {
-                      activeStep?.title &&
-                      <>
-                        <h2 className="fw-bold mt-lg-5">{activeStep?.title || ''}</h2>
-                        <p className="mt-3 text-muted">{activeStep?.desc}</p>
-                      </>
-                    }
+                  <AnimatePresence mode="wait">
+                    <motion.div key={step} {...fromRight} className="flex-grow-1">
+                      {
+                        activeStep?.title &&
+                        <>
+                          <h2 className="fw-bold mt-lg-5 fs-1 fs-lg-2">{activeStep?.title || ''}</h2>
+                          <p className="mt-3 text-muted fs-5 fs-lg-6">{activeStep?.desc}</p>
+                        </>
+                      }
 
-                    <StepComponent savedInfo={info} onValidate={(e) => { setIsValid(e) }} onChange={handleChange} className="pt-4" />
-                  </motion.div>
-                </AnimatePresence>
+                      <StepComponent savedInfo={info} onValidate={(e) => { setIsValid(e) }} onChange={handleChange} className="pt-4" />
+                    </motion.div>
+                  </AnimatePresence>
 
-                {
-                  step <= 4 &&
-                  <div className="mt-3">
-                    <BottomNav step={step} isValid={isValid} onSubmit={handleSubmit} />
-                  </div>
-                }
+                  {
+                    step <= 4 &&
+                    <div className="mt-3 d-none d-lg-block">
+                      <BottomNav step={step} isValid={isValid} onSubmit={handleSubmit} />
+                    </div>
+                  }
 
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
+        {
+          step <= 4 &&
+          <div className="mt-4 d-lg-none bg-white p-3">
+            <BottomNav step={step} isValid={isValid} onSubmit={handleSubmit} />
+          </div>
+        }
       </div>
     </>
   )
