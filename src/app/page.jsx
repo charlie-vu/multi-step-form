@@ -10,6 +10,7 @@ import Step2 from "@/components/Step2";
 import Step3 from "@/components/Step3";
 import Step4 from "@/components/Step4";
 import BottomNav from "@/components/BottomNav";
+import Step5 from "@/components/Step5";
 
 export default function Index() {
   const [isValid, setIsValid] = useState(false);
@@ -52,7 +53,7 @@ export default function Index() {
   const activeStep = stepList.find((item) => item.no === step)
 
   useEffect(() => {
-    if (!step || step > stepList.length || step < 1) {
+    if (!step || step > 5 || step < 1) {
       router.replace('?step=1')
     }
   }, [step, router])
@@ -68,6 +69,9 @@ export default function Index() {
       break
     case 4:
       StepComponent = Step4
+      break
+    case 5:
+      StepComponent = Step5
       break
     default:
       StepComponent = Step1
@@ -91,22 +95,32 @@ export default function Index() {
         <motion.div {...scale} className="card shadow rounded-4 p-4 py-5 py-lg-4">
           <div className="row gx-0">
             <div className="col-lg-auto d-none d-lg-block" style={{ width: 290 }}>
-              <SidebarDesktop stepList={stepList} active={step} />
+              <SidebarDesktop stepList={stepList} active={step <= 4 ? step : 4} />
             </div>
             <div className="col">
-              <div className="h-100 d-stack py-lg-3 pt-lg-5 px-lg-6">
+              <div className="h-100 d-stack py-lg-3 px-lg-5 px-xl-6">
 
                 <AnimatePresence mode="wait">
                   <motion.div key={step} {...fromRight} className="flex-grow-1">
-                    <h2 className="fw-bold">{activeStep?.title || ''}</h2>
-                    <p className="mt-3 text-muted">{activeStep?.desc}</p>
+                    {
+                      activeStep?.title &&
+                      <>
+                        <h2 className="fw-bold mt-lg-5">{activeStep?.title || ''}</h2>
+                        <p className="mt-3 text-muted">{activeStep?.desc}</p>
+                      </>
+                    }
+
                     <StepComponent savedInfo={info} onValidate={(e) => { setIsValid(e) }} onChange={handleChange} className="pt-4" />
                   </motion.div>
                 </AnimatePresence>
 
-                <div className="mt-3">
-                  <BottomNav step={step} isValid={true} onSubmit={handleSubmit} />
-                </div>
+                {
+                  step <= 4 &&
+                  <div className="mt-3">
+                    <BottomNav step={step} isValid={true} onSubmit={handleSubmit} />
+                  </div>
+                }
+
 
               </div>
             </div>

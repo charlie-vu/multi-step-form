@@ -54,7 +54,7 @@ export default function Step2(props) {
     return (
         <>
             <div className={`step-2 ${className}`}>
-                <div className={`row row-cols-1 row-cols-lg-3 g-2 g-lg-4`}>
+                <div className={`row row-cols-1 row-cols-lg-3 g-2 g-lg-3`}>
                     {
                         optionList.map((item, i) =>
                             <div key={item.title} className="col">

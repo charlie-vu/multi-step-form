@@ -56,7 +56,7 @@ export default function Step3(props) {
                                         <p className="fw-semibold">{item.text}</p>
                                         <p className="text-muted small">{item.desc}</p>
                                     </div>
-                                    <p className="text-primary">{displayPrice(item, savedInfo?.isYearly ?? true)}</p>
+                                    <p className="text-primary fw-semibold">{displayPrice(item, savedInfo?.isYearly ?? true)}</p>
                                 </div>
 
                             </div>
